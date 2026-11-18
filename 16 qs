@@ -1,0 +1,42 @@
+class Solution {
+String[] a={"","One","Two","Three","Four","Five","Six","Seven","Eight","Nine","Ten","Eleven","Twelve","Thirteen","Fourteen","Fifteen","Sixteen","Seventeen","Eighteen","Nineteen"};
+String[] b={"","","Twenty","Thirty","Forty","Fifty","Sixty","Seventy","Eighty","Ninety"};
+
+public String numberToWords(int num) {
+    if(num==0) return "Zero";
+
+    String ans="";
+
+    if(num>=1000000000) {
+        ans+=convert(num/1000000000)+" Billion ";
+        num%=1000000000;
+    }
+    if(num>=1000000) {
+        ans+=convert(num/1000000)+" Million ";
+        num%=1000000;
+    }
+    if(num>=1000) {
+        ans+=convert(num/1000)+" Thousand ";
+        num%=1000;
+    }
+    if(num>0) ans+=convert(num);
+
+    return ans.trim();
+}
+
+public String convert(int n) {
+    String word="";
+
+    if(n>=100) {
+        word+=a[n/100]+" Hundred ";
+        n%=100;
+    }
+    if(n>=20) {
+        word+=b[n/10]+" ";
+        n%=10;
+    }
+    if(n>0) word+=a[n]+" ";
+
+    return word;
+}
+}
